@@ -1,0 +1,87 @@
+{
+  "acf": {
+    "level_name": "Dorf der Tüftler",
+    "level_active": true,
+    "level_description": "Dies ist das Dorf der Tüftler",
+    "level_challenges": [
+      {
+        "challenge_title": "Challenge 1",
+        "challenge_description": "Beschreibung des ersten Challenge",
+        "challenge_image": "http://localhost:8082/wp-content/uploads/2022/01/hand_draw_1-scaled.jpg",
+        "challenge_active": true
+      },
+      {
+        "challenge_title": "Challenge 2",
+        "challenge_description": "Beschreibung der zweiten Challenge",
+        "challenge_image": "http://localhost:8082/wp-content/uploads/2022/01/content-scaled.jpg",
+        "challenge_active": false
+      }
+    ],
+    "level_image": false
+  },
+  "_links": {
+    "self": [
+      {
+        "href": "http://localhost:8082/wp-json/wp/v2/posts/1"
+      }
+    ],
+    "collection": [
+      {
+        "href": "http://localhost:8082/wp-json/wp/v2/posts"
+      }
+    ],
+    "about": [
+      {
+        "href": "http://localhost:8082/wp-json/wp/v2/types/post"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "http://localhost:8082/wp-json/wp/v2/users/1"
+      }
+    ],
+    "replies": [
+      {
+        "embeddable": true,
+        "href": "http://localhost:8082/wp-json/wp/v2/comments?post=1"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 4,
+        "href": "http://localhost:8082/wp-json/wp/v2/posts/1/revisions"
+      }
+    ],
+    "predecessor-version": [
+      {
+        "id": 22,
+        "href": "http://localhost:8082/wp-json/wp/v2/posts/1/revisions/22"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "http://localhost:8082/wp-json/wp/v2/media?parent=1"
+      }
+    ],
+    "wp:term": [
+      {
+        "taxonomy": "category",
+        "embeddable": true,
+        "href": "http://localhost:8082/wp-json/wp/v2/categories?post=1"
+      },
+      {
+        "taxonomy": "post_tag",
+        "embeddable": true,
+        "href": "http://localhost:8082/wp-json/wp/v2/tags?post=1"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  }
+}

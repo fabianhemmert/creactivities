@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  chatbot:
+    hostname: chatbot
+    image: gitlab.interactive-pioneers.de:5000/ips/creactivities/chatbot:latest
+    restart: always
+    env_file:
+      - chatbot.properties
+    volumes:
+      - ${PWD}/i18n/messages_de.properties:/i18n/messages_de.properties
+      - ${PWD}/i18n/messages_en.properties:/i18n/messages_en.properties
+      - ${PWD}/Staerkenprofil Background.png:/app/resources/Staerkenprofil Background.png
+      - db:/db
+  botdb:
+    hostname: botdb
+    image: mariadb:10.7
+    restart: always
+    volumes:
+      - botdb:/var/lib/mysql
+    env_file:
+      - mariadb.properties
+  phpmyadmin:
+    hostname: phpmyadmin
+    image: phpmyadmin
+    depends_on:
+      - botdb
+    environment:
+      - PMA_ARBITRARY=1
+    ports:
+      - 28080:80
+volumes:
+  db:
+  botdb:

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1q1gv6a" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="LevelProcess" name="Level durchführen" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Level wurde gestartet">
+      <bpmn:outgoing>Flow_1j8uwvp</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:callActivity id="Act_Level_InChallenge" name="Challenge durchführen" calledElement="ChallengeProcess">
+      <bpmn:extensionElements>
+        <camunda:in source="courseId" target="courseId" />
+        <camunda:in source="chatId" target="chatId" />
+        <camunda:in source="levelId" target="levelId" />
+        <camunda:in source="challengeId" target="challengeId" />
+        <camunda:in source="userId" target="userId" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1lrrwv8</bpmn:incoming>
+      <bpmn:outgoing>Flow_158jzoo</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:exclusiveGateway id="Gateway_1i34b63" name="Gibt es weitere Challenges?">
+      <bpmn:incoming>Flow_158jzoo</bpmn:incoming>
+      <bpmn:outgoing>Flow_0rofy0g</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1yklewf</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_1smkila" name="Level abgeschlossen">
+      <bpmn:incoming>Flow_00niphi</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0rofy0g" name="nein" sourceRef="Gateway_1i34b63" targetRef="Act_Level_Epilogue">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${endOfChallenges}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1lrrwv8" sourceRef="Activity_1d6rszh" targetRef="Act_Level_InChallenge" />
+    <bpmn:serviceTask id="Activity_1d6rszh" name="Challenge laden" camunda:class="de.ips.creactivities.chatbot.process.ChallengeLoaderDelegate">
+      <bpmn:incoming>Flow_0e0uhes</bpmn:incoming>
+      <bpmn:incoming>Flow_1yklewf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1lrrwv8</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:callActivity id="Act_Level_Prologue" name="Vorgeschichte des Levels" calledElement="StoryInteractionProcess">
+      <bpmn:extensionElements>
+        <camunda:in source="chatId" target="chatId" />
+        <camunda:in source="courseId" target="courseId" />
+        <camunda:in source="userId" target="userId" />
+        <camunda:in source="interactionType" target="interactionType" local="true" />
+        <camunda:inputOutput>
+          <camunda:inputParameter name="interactionType">prologue</camunda:inputParameter>
+          <camunda:inputParameter name="interactionWorldDepth">level</camunda:inputParameter>
+        </camunda:inputOutput>
+        <camunda:in source="interactionWorldDepth" target="interactionWorldDepth" local="true" />
+        <camunda:in source="levelId" target="levelId" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1j8uwvp</bpmn:incoming>
+      <bpmn:outgoing>Flow_0e0uhes</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_0e0uhes" sourceRef="Act_Level_Prologue" targetRef="Activity_1d6rszh" />
+    <bpmn:sequenceFlow id="Flow_1j8uwvp" sourceRef="StartEvent_1" targetRef="Act_Level_Prologue" />
+    <bpmn:sequenceFlow id="Flow_1yklewf" name="ja" sourceRef="Gateway_1i34b63" targetRef="Activity_1d6rszh">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!endOfChallenges}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_158jzoo" sourceRef="Act_Level_InChallenge" targetRef="Gateway_1i34b63" />
+    <bpmn:callActivity id="Act_Level_Epilogue" name="Epilog des Levels" calledElement="StoryInteractionProcess">
+      <bpmn:extensionElements>
+        <camunda:in source="chatId" target="chatId" />
+        <camunda:in source="courseId" target="courseId" />
+        <camunda:in source="userId" target="userId" />
+        <camunda:in source="interactionType" target="interactionType" local="true" />
+        <camunda:inputOutput>
+          <camunda:inputParameter name="interactionType">epilogue</camunda:inputParameter>
+          <camunda:inputParameter name="interactionWorldDepth">level</camunda:inputParameter>
+        </camunda:inputOutput>
+        <camunda:in source="interactionWorldDepth" target="interactionWorldDepth" local="true" />
+        <camunda:in source="levelId" target="levelId" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0rofy0g</bpmn:incoming>
+      <bpmn:outgoing>Flow_00niphi</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_00niphi" sourceRef="Act_Level_Epilogue" targetRef="Event_1smkila" />
+    <bpmn:textAnnotation id="TextAnnotation_14y3b4o">
+      <bpmn:text>per Text und/oder Foto</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0ubto6q" sourceRef="Activity_1d6rszh" targetRef="TextAnnotation_14y3b4o" />
+    <bpmn:textAnnotation id="TextAnnotation_122rxvo">
+      <bpmn:text>es müssen alle Challenges nacheinander in einer festen Reihenfolge abgeschlossen werden (Challenges können auch aufeinander aufbauen)</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1bux55e" sourceRef="StartEvent_1" targetRef="TextAnnotation_122rxvo" />
+  </bpmn:process>
+  <bpmn:message id="Message_1c3zfoz" name="preambleResponse" />
+  <bpmn:message id="Message_0tb7nro" name="epilogueResponse" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="LevelProcess">
+      <bpmndi:BPMNEdge id="Flow_00niphi_di" bpmnElement="Flow_00niphi">
+        <di:waypoint x="930" y="347" />
+        <di:waypoint x="992" y="347" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_158jzoo_di" bpmnElement="Flow_158jzoo">
+        <di:waypoint x="690" y="347" />
+        <di:waypoint x="735" y="347" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yklewf_di" bpmnElement="Flow_1yklewf">
+        <di:waypoint x="760" y="372" />
+        <di:waypoint x="760" y="420" />
+        <di:waypoint x="500" y="420" />
+        <di:waypoint x="500" y="390" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="747" y="402" width="8" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1j8uwvp_di" bpmnElement="Flow_1j8uwvp">
+        <di:waypoint x="228" y="347" />
+        <di:waypoint x="300" y="347" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0e0uhes_di" bpmnElement="Flow_0e0uhes">
+        <di:waypoint x="400" y="347" />
+        <di:waypoint x="450" y="347" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lrrwv8_di" bpmnElement="Flow_1lrrwv8">
+        <di:waypoint x="550" y="347" />
+        <di:waypoint x="590" y="347" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rofy0g_di" bpmnElement="Flow_0rofy0g">
+        <di:waypoint x="785" y="347" />
+        <di:waypoint x="830" y="347" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="786" y="329" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="192" y="329" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="180" y="372" width="60" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0zk28q7_di" bpmnElement="Act_Level_InChallenge" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="590" y="307" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1i34b63_di" bpmnElement="Gateway_1i34b63" isMarkerVisible="true">
+        <dc:Bounds x="735" y="322" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="723" y="286" width="74" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1smkila_di" bpmnElement="Event_1smkila" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="992" y="329" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="973" y="372" width="74" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0g98yya_di" bpmnElement="Activity_1d6rszh" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="450" y="307" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1x8qsko_di" bpmnElement="Act_Level_Prologue" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="300" y="307" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xunoel_di" bpmnElement="Act_Level_Epilogue" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="830" y="307" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_14y3b4o_di" bpmnElement="TextAnnotation_14y3b4o">
+        <dc:Bounds x="450" y="214" width="100" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_122rxvo_di" bpmnElement="TextAnnotation_122rxvo">
+        <dc:Bounds x="160" y="70" width="100" height="170" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0ubto6q_di" bpmnElement="Association_0ubto6q">
+        <di:waypoint x="500" y="307" />
+        <di:waypoint x="500" y="255" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1bux55e_di" bpmnElement="Association_1bux55e">
+        <di:waypoint x="210" y="329" />
+        <di:waypoint x="210" y="240" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

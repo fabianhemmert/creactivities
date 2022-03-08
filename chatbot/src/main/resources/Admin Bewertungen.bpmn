@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_15bxdmy" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="AdminEvaluationProcess" name="Admin Bewertungsprozess" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0uvi9fp</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0uvi9fp" sourceRef="StartEvent_1" targetRef="Activity_1u7szxh" />
+    <bpmn:sendTask id="Activity_1taap7w" name="Gemeldete Lösung an den Adminchat schicken" camunda:class="de.ips.creactivities.chatbot.process.admin.SendReportedSolutionToAdminDelegate">
+      <bpmn:incoming>Flow_080580s</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ib2x3o</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="Flow_0ib2x3o" sourceRef="Activity_1taap7w" targetRef="Activity_0oykws2" />
+    <bpmn:receiveTask id="Activity_0oykws2" name="Auf Bewertung durch Admin warten" messageRef="Message_0v3ilfv">
+      <bpmn:incoming>Flow_0ib2x3o</bpmn:incoming>
+      <bpmn:outgoing>Flow_0nvfxqa</bpmn:outgoing>
+    </bpmn:receiveTask>
+    <bpmn:sequenceFlow id="Flow_0nvfxqa" sourceRef="Activity_0oykws2" targetRef="Gateway_1sbwbxi" />
+    <bpmn:endEvent id="Event_0ax4281">
+      <bpmn:incoming>Flow_1vvbx7u</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1j81o5w" name="Lösung freigegeben" sourceRef="Gateway_1sbwbxi" targetRef="Activity_1p8osmt">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${eval==0}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="Event_088b8qj">
+      <bpmn:incoming>Flow_11e8jw6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_01a3k6u" name="Lösung blockiert" sourceRef="Gateway_1sbwbxi" targetRef="Activity_0kq25kj">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${eval==1}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1fy49dy" name="Benutzer und Lösung blockiert" sourceRef="Gateway_1sbwbxi" targetRef="Activity_1o4n19j">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${eval==2}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1vvbx7u" sourceRef="Activity_1p8osmt" targetRef="Event_0ax4281" />
+    <bpmn:serviceTask id="Activity_1p8osmt" name="Lösung entsperren" camunda:class="de.ips.creactivities.chatbot.process.admin.SetSolutionBlockStateDelegate">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="blockState">false</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1j81o5w</bpmn:incoming>
+      <bpmn:outgoing>Flow_1vvbx7u</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_1u7szxh" name="Lösung sperren" camunda:class="de.ips.creactivities.chatbot.process.admin.SetSolutionBlockStateDelegate">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="blockState">true</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0uvi9fp</bpmn:incoming>
+      <bpmn:outgoing>Flow_080580s</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_080580s" sourceRef="Activity_1u7szxh" targetRef="Activity_1taap7w" />
+    <bpmn:sequenceFlow id="Flow_0clj5f0" sourceRef="Activity_1o4n19j" targetRef="Activity_0zewy5x" />
+    <bpmn:sendTask id="Activity_1o4n19j" name="Bestätigungs-anfrage verschicken" camunda:class="de.ips.creactivities.chatbot.process.admin.SendUserBlockingConfirmation">
+      <bpmn:incoming>Flow_1fy49dy</bpmn:incoming>
+      <bpmn:outgoing>Flow_0clj5f0</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:receiveTask id="Activity_0zewy5x" name="Auf Antwort durch Admin warten" messageRef="Message_1iepdhp">
+      <bpmn:incoming>Flow_0clj5f0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ioii2b</bpmn:outgoing>
+    </bpmn:receiveTask>
+    <bpmn:sequenceFlow id="Flow_0ioii2b" sourceRef="Activity_0zewy5x" targetRef="Gateway_15sqs9o" />
+    <bpmn:exclusiveGateway id="Gateway_15sqs9o" name="Benutzer sperren?">
+      <bpmn:incoming>Flow_0ioii2b</bpmn:incoming>
+      <bpmn:outgoing>Flow_1pfpgzj</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1fafjpr</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1pfpgzj" name="ja" sourceRef="Gateway_15sqs9o" targetRef="Activity_06wtr8l">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${block==1}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Activity_06wtr8l" name="Benutzer sperren" camunda:class="de.ips.creactivities.chatbot.process.admin.SetUserBlockStateDelegate">
+      <bpmn:incoming>Flow_1pfpgzj</bpmn:incoming>
+      <bpmn:outgoing>Flow_005gacf</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_1kuj0dl">
+      <bpmn:incoming>Flow_005gacf</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_005gacf" sourceRef="Activity_06wtr8l" targetRef="Event_1kuj0dl" />
+    <bpmn:sequenceFlow id="Flow_1fafjpr" name="nein" sourceRef="Gateway_15sqs9o" targetRef="Activity_0kq25kj">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${block==0}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_11e8jw6" sourceRef="Activity_0kq25kj" targetRef="Event_088b8qj" />
+    <bpmn:serviceTask id="Activity_0kq25kj" name="Lösungen auffüllen" camunda:class="de.ips.creactivities.chatbot.process.admin.FilloutRemainingEvaluationsForBlockedSolution">
+      <bpmn:incoming>Flow_01a3k6u</bpmn:incoming>
+      <bpmn:incoming>Flow_1fafjpr</bpmn:incoming>
+      <bpmn:outgoing>Flow_11e8jw6</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_1sbwbxi">
+      <bpmn:incoming>Flow_0nvfxqa</bpmn:incoming>
+      <bpmn:outgoing>Flow_1j81o5w</bpmn:outgoing>
+      <bpmn:outgoing>Flow_01a3k6u</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1fy49dy</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+  </bpmn:process>
+  <bpmn:message id="Message_0v3ilfv" name="ARE" />
+  <bpmn:message id="Message_1iepdhp" name="userBlockResponse" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="AdminEvaluationProcess">
+      <bpmndi:BPMNEdge id="Flow_11e8jw6_di" bpmnElement="Flow_11e8jw6">
+        <di:waypoint x="1250" y="247" />
+        <di:waypoint x="1462" y="247" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fafjpr_di" bpmnElement="Flow_1fafjpr">
+        <di:waypoint x="1200" y="355" />
+        <di:waypoint x="1200" y="287" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1169" y="323" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_005gacf_di" bpmnElement="Flow_005gacf">
+        <di:waypoint x="1390" y="380" />
+        <di:waypoint x="1462" y="380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pfpgzj_di" bpmnElement="Flow_1pfpgzj">
+        <di:waypoint x="1225" y="380" />
+        <di:waypoint x="1290" y="380" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1254" y="362" width="8" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ioii2b_di" bpmnElement="Flow_0ioii2b">
+        <di:waypoint x="1110" y="380" />
+        <di:waypoint x="1175" y="380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0clj5f0_di" bpmnElement="Flow_0clj5f0">
+        <di:waypoint x="930" y="380" />
+        <di:waypoint x="1010" y="380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_080580s_di" bpmnElement="Flow_080580s">
+        <di:waypoint x="340" y="247" />
+        <di:waypoint x="390" y="247" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vvbx7u_di" bpmnElement="Flow_1vvbx7u">
+        <di:waypoint x="930" y="120" />
+        <di:waypoint x="1012" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fy49dy_di" bpmnElement="Flow_1fy49dy">
+        <di:waypoint x="730" y="272" />
+        <di:waypoint x="730" y="380" />
+        <di:waypoint x="830" y="380" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="739" y="276" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01a3k6u_di" bpmnElement="Flow_01a3k6u">
+        <di:waypoint x="755" y="247" />
+        <di:waypoint x="1150" y="247" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="750" y="213" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1j81o5w_di" bpmnElement="Flow_1j81o5w">
+        <di:waypoint x="730" y="222" />
+        <di:waypoint x="730" y="120" />
+        <di:waypoint x="830" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="721" y="86" width="58" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0nvfxqa_di" bpmnElement="Flow_0nvfxqa">
+        <di:waypoint x="650" y="247" />
+        <di:waypoint x="705" y="247" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ib2x3o_di" bpmnElement="Flow_0ib2x3o">
+        <di:waypoint x="490" y="247" />
+        <di:waypoint x="550" y="247" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0uvi9fp_di" bpmnElement="Flow_0uvi9fp">
+        <di:waypoint x="188" y="247" />
+        <di:waypoint x="240" y="247" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="229" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0pu8c3z_di" bpmnElement="Activity_1taap7w">
+        <dc:Bounds x="390" y="207" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00kyc2g_di" bpmnElement="Activity_0oykws2">
+        <dc:Bounds x="550" y="207" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ax4281_di" bpmnElement="Event_0ax4281">
+        <dc:Bounds x="1012" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_088b8qj_di" bpmnElement="Event_088b8qj">
+        <dc:Bounds x="1462" y="229" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_175h7v6_di" bpmnElement="Activity_1p8osmt">
+        <dc:Bounds x="830" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1u7szxh_di" bpmnElement="Activity_1u7szxh">
+        <dc:Bounds x="240" y="207" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1yxbtiz_di" bpmnElement="Activity_1o4n19j">
+        <dc:Bounds x="830" y="340" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0zewy5x_di" bpmnElement="Activity_0zewy5x">
+        <dc:Bounds x="1010" y="340" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_15sqs9o_di" bpmnElement="Gateway_15sqs9o" isMarkerVisible="true">
+        <dc:Bounds x="1175" y="355" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1177" y="416" width="46" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_08x3qbc_di" bpmnElement="Activity_06wtr8l">
+        <dc:Bounds x="1290" y="340" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1kuj0dl_di" bpmnElement="Event_1kuj0dl">
+        <dc:Bounds x="1462" y="362" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_05efvaf_di" bpmnElement="Activity_0kq25kj">
+        <dc:Bounds x="1150" y="207" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1xewa9u_di" bpmnElement="Gateway_1sbwbxi" isMarkerVisible="true">
+        <dc:Bounds x="705" y="222" width="50" height="50" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

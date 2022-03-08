@@ -1,0 +1,43 @@
+
+spring:
+  application:
+    name: creactivities-dev
+  datasource:
+#    url: jdbc:h2:file:./db/creactivities.db
+    url: jdbc:h2:mem:mydb # in memory DB
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+camunda.bpm:
+  admin-user:
+    id: demo
+    password: demo
+    firstName: Demo
+  auto-deployment-enabled: true
+  bpm:
+    job-execution:
+      max-wait: 10000
+chatbot:
+  name: creactivities_dev_bot
+  api: https://api.telegram.org
+  apikey:
+  cmsBaseUrl: https://creactivities.docker.as-labs.com/wp-json/
+  cmsUser: chatbot
+  cmsPassword:
+  numberOfRequiredEvaluations: 1
+  evaluationsMaxWaitTime: 10
+
+management:
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: health,info,metrics
+logging:
+  level:
+    org.camunda.bpm.engine.context: OFF

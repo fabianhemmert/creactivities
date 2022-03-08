@@ -1,0 +1,46 @@
+[
+  {
+    "acf": {
+      "level_name": "Welt der Wunder",
+      "level_active": true,
+      "level_description": "Beschreibung der Welt der Wunder",
+      "level_challenges": [
+        {
+          "challenge_title": "WDW Challenge 1",
+          "challenge_description": "WDW1",
+          "challenge_image": "http://localhost:8082/wp-content/uploads/2022/01/hand_draw_1-scaled.jpg",
+          "challenge_active": true
+        },
+        {
+          "challenge_title": "WDW Challenge 2",
+          "challenge_description": "WDW2",
+          "challenge_image": "http://localhost:8082/wp-content/uploads/2022/01/content-scaled.jpg",
+          "challenge_active": true
+        }
+      ],
+      "level_image": "http://localhost:8082/wp-content/uploads/2022/01/content-scaled.jpg"
+    }
+  },
+  {
+    "acf": {
+      "level_name": "Dorf der Tüftler",
+      "level_active": true,
+      "level_description": "Dies ist das Dorf der Tüftler",
+      "level_challenges": [
+        {
+          "challenge_title": "Challenge 1",
+          "challenge_description": "Beschreibung des ersten Challenge",
+          "challenge_image": "http://localhost:8082/wp-content/uploads/2022/01/hand_draw_1-scaled.jpg",
+          "challenge_active": true
+        },
+        {
+          "challenge_title": "Challenge 2",
+          "challenge_description": "Beschreibung der zweiten Challenge",
+          "challenge_image": "http://localhost:8082/wp-content/uploads/2022/01/content-scaled.jpg",
+          "challenge_active": false
+        }
+      ],
+      "level_image": false
+    }
+  }
+]

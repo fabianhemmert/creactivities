@@ -1,0 +1,256 @@
+[
+  {
+    "acf": {
+      "level_name": "Wald der Erfindungen",
+      "level_active": true,
+      "level_description": "Dies ist das Wald der Erfindungen",
+      "level_prologue": [
+        {
+          "level_prologue_text": "Schau mal, dort vorne scheint der Eingang zum Wald der Erfindungen zu sein! Aber ich kann zwei Wege erkennen!",
+          "level_prologue_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+          "level_prologue_answers": [
+            {
+              "level_prologue_answers_answer": "Wo müssen wir lang?"
+            }
+          ]
+        },
+        {
+          "level_prologue_text": "Das weiß ich auch noch nicht, denn hier im Wald ist oftmals der Empfang nicht so gut. Damit wir uns nicht verlaufen, habe ich die GPS Daten für den Wald der Erfindungen heruntergeladen.",
+          "level_prologue_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+          "level_prologue_answers": [
+            {
+              "level_prologue_answers_answer": "Ich denke, das hier ist der richtige Weg."
+            },
+            {
+              "level_prologue_answers_answer": "Komm, lass uns losgehen!"
+            }
+          ]
+        }
+      ],
+      "level_challenges": [
+        {
+          "challenge_title": "Challenge 1",
+          "challenge_description": "Beschreibung des ersten Challenge",
+          "challenge_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+          "challenge_active": true,
+          "challenge_prologue": [
+            {
+              "challenge_prologue_text": "Hier im Wald soll es noch viele alte Erfindungen geben, vielleicht finden wir dort auch einige Splitter. Vielleicht sind sogar die alten Ideen in den Splittern gefangen. Ah, es ist einfach spannend.\nSchau mal, liegt dort nicht der erste Splitter?",
+              "challenge_prologue_image": "",
+              "challenge_prologue_answers": [
+                {
+                  "challenge_prologue_answers_answer": "Wie lautet die Prüfung?"
+                }
+              ]
+            }
+          ],
+          "challenge_epilogue": [
+            {
+              "challenge_epilogue_text": "WOW... auf so eine Lösung wäre ich niemals gekommen… Du hast den Splitter zum Leuchten geGroßembracht! Jetzt kann er viele andere Inspirieren! Vielleicht wird er mal zu etwas ganz großem...Dazu fällt mir ein passendes Zitat ein:\n“ Ein Funken der Kreativität bringt uns manchmal zu einem ganz neuen Level der Kreativität!”.... Jetzt habe ich vergessen von wem das war...",
+              "challenge_epilogue_image": "",
+              "challenge_epilogue_answers": [
+                {
+                  "challenge_epilogue_answers_answer": "Nimm doch bitte den Splitter und lass uns weitergehen!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "challenge_title": "Challenge 2",
+          "challenge_description": "Beschreibung der zweiten Challenge",
+          "challenge_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+          "challenge_active": true,
+          "challenge_prologue": [
+            {
+              "challenge_prologue_text": "OH, da ist noch eine Idee die deine Hilfe braucht!",
+              "challenge_prologue_image": "",
+              "challenge_prologue_answers": [
+                {
+                  "challenge_prologue_answers_answer": "Ich bin bereit!"
+                }
+              ]
+            }
+          ],
+          "challenge_epilogue": [
+            {
+              "challenge_epilogue_text": "Klasse! Wieder eine Idee befreit. Mit Hilfe deiner Vorstellungskraft war das wohl kein Problem. Schon Pablo Picasso hatte erkannt: \"Alles, was man sich vorstellen kann, ist real.\" - Pablo Picasso",
+              "challenge_epilogue_image": "",
+              "challenge_epilogue_answers": [
+                {
+                  "challenge_epilogue_answers_answer": "Vielen Dank. Lass uns mal versuchen, die beiden Splitter zusammenzusetzen."
+                }
+              ]
+            },
+            {
+              "challenge_epilogue_text": "Ich werd’ verrückt! Es funktioniert! Schau, die Splitter beginnen leicht zu glimmen!",
+              "challenge_epilogue_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+              "challenge_epilogue_answers": [
+                {
+                  "challenge_epilogue_answers_answer": "Wir sind auf dem richtigen Weg. Lass uns weitersuchen!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "challenge_title": "Challenge 3",
+          "challenge_description": "Beschreibung der dritten Challenge",
+          "challenge_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+          "challenge_active": true,
+          "challenge_prologue": [
+            {
+              "challenge_prologue_text": "Schau mal, ist da nicht wieder eine Idee, der du helfen könntest?",
+              "challenge_prologue_image": "",
+              "challenge_prologue_answers": [
+                {
+                  "challenge_prologue_answers_answer": "Weiter."
+                }
+              ]
+            }
+          ],
+          "challenge_epilogue": [
+            {
+              "challenge_epilogue_text": "Klasse! Wieder eine Idee befreit. Mit Hilfe deiner Vorstellungskraft war das wohl kein Problem. Schon Pablo Picasso hatte erkannt: \"Alles, was man sich vorstellen kann, ist real.\" - Pablo Picasso",
+              "challenge_epilogue_image": "",
+              "challenge_epilogue_answers": [
+                {
+                  "challenge_epilogue_answers_answer": "Vielen Dank. Lass uns mal versuchen, die beiden Splitter zusammenzusetzen."
+                }
+              ]
+            },
+            {
+              "challenge_epilogue_text": "Klasse, das gefällt mir! Aber gib acht: Lasse dich nicht vom Aussehen täuschen, denn nicht jede Erfindung erfüllt ihren Zweck!\"",
+              "challenge_epilogue_image": "",
+              "challenge_epilogue_answers": [
+                {
+                  "challenge_epilogue_answers_answer": "Schon klar. Lass uns den Splittern mit den anderen zusammenfügen."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "challenge_title": "Challenge 4",
+          "challenge_description": "Beschreibung der vierten Challenge",
+          "challenge_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+          "challenge_active": true,
+          "challenge_prologue": [
+            {
+              "challenge_prologue_text": "Ja, doch! Sehe ich da vorne nicht schon die nächste Idee?",
+              "challenge_prologue_image": "",
+              "challenge_prologue_answers": [
+                {
+                  "challenge_prologue_answers_answer": "Los, komm!"
+                }
+              ]
+            }
+          ],
+          "challenge_epilogue": [
+            {
+              "challenge_epilogue_text": "Genial! Schon Albert Einstein hatte erkannt: „Kreativität ist Intelligenz, die Spaß hat.“. Jetzt noch schnell den Splitter einfügen… Schau, es leuchtet immer heller.",
+              "challenge_epilogue_image": "",
+              "challenge_epilogue_answers": [
+                {
+                  "challenge_epilogue_answers_answer": "Lass uns weiter gehen, hier wartet nur noch eine Aufgabe auf uns!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "challenge_title": "Challenge 5",
+          "challenge_description": "Beschreibung der fünften Challenge",
+          "challenge_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+          "challenge_active": false
+        }
+      ],
+      "level_epilogue": [
+        {
+          "level_epilogue_text": "OH, da ist sie schon!",
+          "level_epilogue_image": "",
+          "level_epilogue_answers": [
+            {
+              "level_epilogue_answers_answer": "Nichts wie hin!"
+            }
+          ]
+        },
+        {
+          "level_epilogue_text": "Wow, nicht schlecht! So, jetzt den Kristall zusammensetzen! Der Erste ist komplett! Schau, wie er funkelt. Ich sehe, wir sind auf dem richtigen Weg. Und denke immer daran: Der Weitsichtige kann bis hinter den Horizont schauen. Das wusste schon Siegfried Wache.",
+          "level_epilogue_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+          "level_epilogue_answers": [
+            {
+              "level_epilogue_answers_answer": "Ja, danke. Was tät ich nur ohne dich?"
+            }
+          ]
+        }
+      ],
+      "level_image": false
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "http://localhost:8082/wp-json/wp/v2/posts/1"
+        }
+      ],
+      "collection": [
+        {
+          "href": "http://localhost:8082/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "http://localhost:8082/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "http://localhost:8082/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "http://localhost:8082/wp-json/wp/v2/comments?post=1"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 4,
+          "href": "http://localhost:8082/wp-json/wp/v2/posts/1/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 22,
+          "href": "http://localhost:8082/wp-json/wp/v2/posts/1/revisions/22"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "http://localhost:8082/wp-json/wp/v2/media?parent=1"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "http://localhost:8082/wp-json/wp/v2/categories?post=1"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "http://localhost:8082/wp-json/wp/v2/tags?post=1"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

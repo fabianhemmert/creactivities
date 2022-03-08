@@ -1,0 +1,35 @@
+default:
+  image: maven:eclipse-temurin
+  tags: 
+    - creactivities
+
+stages:
+  - build
+  - analyze
+
+variables:
+  MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
+  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true -s ci_settings.xml"
+  REGISTRY_USER: $CI_DEPLOY_USER
+  REGISTRY_PWD: $CI_DEPLOY_PASSWORD
+
+cache:
+  paths:
+    - .m2/repository
+    - chatbot/target/
+
+.pack: &pack
+  stage: build
+
+build:chatbot:
+  <<: *pack
+  script:
+    - 'cd chatbot && mvn $MAVEN_CLI_OPTS clean package'
+
+sonar:chatbot:
+  <<: *pack
+  stage: analyze
+  needs:
+    - build:chatbot
+  script:
+    - 'cd chatbot && mvn $MAVEN_CLI_OPTS sonar:sonar'

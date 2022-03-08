@@ -1,0 +1,12 @@
+{
+  "acf": {
+    "level_identifier": "Tal der Einfallslosigkeit",
+    "level_name": "Tal der Einfallslosigkeit",
+    "level_active": true,
+    "level_description": "einfallslose Beschreibung",
+    "level_image": "https://creactivities.docker.as-labs.com/wp-content/uploads/2022/02/gray-world-map.png",
+    "level_prologue": false,
+    "level_challenges": false,
+    "level_epilogue": false
+  }
+}

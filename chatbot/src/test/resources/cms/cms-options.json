@@ -1,0 +1,15 @@
+{
+  "acf": {
+    "creactivities_admin_ids": [
+      {
+        "creactivities_admin_ids_username": "Johannes",
+        "creactivities_admin_ids_telegramid": "47668302"
+      },
+      {
+        "creactivities_admin_ids_username": "Andy",
+        "creactivities_admin_ids_telegramid": "12345678"
+      }
+    ],
+    "creactivities_content_privacy": "asdfasdfasdfada"
+  }
+}

@@ -1,0 +1,114 @@
+[
+    {
+        "acf": {
+            "level_name": "Wald der Erfindungen",
+            "level_active": true,
+            "level_description": "Dies ist das Wald der Erfindungen",
+            "level_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+            "level_prologue": [
+                {
+                    "level_prologue_text": "Schau mal, dort vorne scheint der Eingang zum Wald der Erfindungen zu sein! Aber ich kann zwei Wege erkennen!",
+                    "level_prologue_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+                    "level_prologue_answers": [
+                        {
+                            "level_prologue_answers_answer": "Wo müssen wir lang?"
+                        },
+                        {
+                            "level_prologue_answers_answer": ""
+                        }
+                    ]
+                },
+                {
+                    "level_prologue_text": "Das weiß ich auch noch nicht, denn hier im Wald ist oftmals der Empfang nicht so gut. Damit wir uns nicht verlaufen, habe ich die GPS Daten für den Wald der Erfindungen heruntergeladen.",
+                    "level_prologue_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+                    "level_prologue_answers": [
+                        {
+                            "level_prologue_answers_answer": "Ich denke, das hier ist der richtige Weg."
+                        },
+                        {
+                            "level_prologue_answers_answer": "Komm, lass uns losgehen!"
+                        }
+                    ]
+                }
+            ],
+            "level_challenges": [
+                {
+                    "challenge_title": "Challenge 1",
+                    "challenge_description": "Beschreibung des ersten Challenge",
+                    "challenge_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+                    "challenge_active": true,
+                    "challenge_prologue": [
+                        {
+                            "challenge_prologue_text": "OH, da ist noch eine Idee die deine Hilfe braucht!",
+                            "challenge_prologue_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+                            "challenge_prologue_answers": [
+                                {
+                                    "challenge_prologue_answers_answer": "Ich bin bereit!"
+                                }
+                            ]
+                        }
+                    ],
+                    "challenge_epilogue": [
+                        {
+                            "challenge_epilogue_text": "WOW... auf so eine Lösung wäre ich niemals gekommen… Du hast den Splitter zum Leuchten geGroßembracht! Jetzt kann er viele andere Inspirieren! Vielleicht wird er mal zu etwas ganz großem...Dazu fällt mir ein passendes Zitat ein:\\n“ Ein Funken der Kreativität bringt uns manchmal zu einem ganz neuen Level der Kreativität!”.... Jetzt habe ich vergessen von wem das war...\"",
+                            "challenge_epilogue_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+                            "challenge_epilogue_answers": [
+                                {
+                                    "challenge_epilogue_answers_answer": "Nimm doch bitte den Splitter und lass uns weitergehen!"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "challenge_title": "Challenge 2",
+                    "challenge_description": "Beschreibung der zweiten Challenge",
+                    "challenge_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+                    "challenge_active": true,
+                    "challenge_prologue": [
+                        {
+                            "challenge_prologue_text": "OH, da ist noch eine Idee die deine Hilfe braucht!",
+                            "challenge_prologue_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+                            "challenge_prologue_answers": [
+                                {
+                                    "challenge_prologue_answers_answer": "Ich bin bereit!"
+                                }
+                            ]
+                        }
+                    ],
+                    "challenge_epilogue": [
+                        {
+                            "challenge_epilogue_text": "Ich werd’ verrückt! Es funktioniert! Schau, die Splitter beginnen leicht zu glimmen!",
+                            "challenge_epilogue_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+                            "challenge_epilogue_answers": [
+                                {
+                                    "challenge_epilogue_answers_answer": "Wir sind auf dem richtigen Weg. Lass uns weitersuchen!"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "level_epilogue": [
+                {
+                    "level_epilogue_text": "OH, da ist sie schon!",
+                    "level_epilogue_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+                    "level_epilogue_answers": [
+                        {
+                            "level_epilogue_answers_answer": "Nichts wie hin!"
+                        }
+                    ]
+                },
+                {
+                    "level_epilogue_text": "Wow, nicht schlecht! So, jetzt den Kristall zusammensetzen! Der Erste ist komplett! Schau, wie er funkelt. Ich sehe, wir sind auf dem richtigen Weg. Und denke immer daran: Der Weitsichtige kann bis hinter den Horizont schauen. Das wusste schon Siegfried Wache.",
+                    "level_epilogue_image": "https://www.djgummikuh.de/wp-content/uploads/2022/01/image-1.png",
+                    "level_epilogue_answers": [
+                        {
+                            "level_epilogue_answers_answer": "Ja, danke. Was tät ich nur ohne dich?"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]
