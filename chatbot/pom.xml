@@ -146,7 +146,7 @@
                             <username>${env.REGISTRY_USER}</username>
                             <password>${env.REGISTRY_PWD}</password>
                         </auth>
-                        <image>gitlab.interactive-pioneers.de:5000/ips/creactivities/chatbot</image>
+                        <image>ghcr.io/fabianhemmert/creactivities/chatbot</image>
                         <tags>
                             <tag>latest</tag>
                             <tag>${project.version}</tag>
