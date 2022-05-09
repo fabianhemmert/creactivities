@@ -102,6 +102,8 @@
             <groupId>org.jfree</groupId>
             <artifactId>jfreechart</artifactId>
             <version>1.5.3-spiderplotfix</version>
+            <systemPath>${project.basedir}/jfreechart-1.5.3-spiderplotfix.jar</systemPath>
+            <scope>system</scope>
         </dependency>
     </dependencies>
 
