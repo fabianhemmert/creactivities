@@ -21,7 +21,7 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: build
-        run: cd chatbot && mvn -B clean package -errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true
+        run: cd chatbot && mvn -B clean package -skipTests -errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true
         env:
           REGISTRY_USER: ${{ github.actor }} 
           REGISTRY_PWD: ${{ secrets.GITHUB_TOKEN }}
