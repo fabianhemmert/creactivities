@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-@Component
+//@Component
 @Slf4j
 public class UnblockCommand implements ICommand {
 

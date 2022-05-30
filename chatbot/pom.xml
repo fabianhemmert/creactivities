@@ -10,7 +10,7 @@
     </parent>
     <groupId>de.ips.creactivities</groupId>
     <artifactId>chatbot</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <name>chatbot</name>
     <description>chatbot</description>
     <properties>
