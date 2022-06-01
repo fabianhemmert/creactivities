@@ -1,5 +1,6 @@
 package de.ips.creactivities.chatbot.process;
 
+import de.ips.creactivities.chatbot.ChatbotProperties;
 import de.ips.creactivities.chatbot.cms.ICmsService;
 import de.ips.creactivities.chatbot.cms.dm.Challenge;
 import de.ips.creactivities.chatbot.cms.dm.ThirdPartyEvaluation;
@@ -38,6 +39,8 @@ public class SendDifferentSolutionToUserDelegate implements JavaDelegate {
     private SolutionRepository solutionRepository;
 
     private MessageSender messageSender;
+
+    private ChatbotProperties config;
 
     private ICmsService cmsService;
 
@@ -97,6 +100,10 @@ public class SendDifferentSolutionToUserDelegate implements JavaDelegate {
         SolutionEntity solutionToSend = null;
 
         for (SolutionEntity solution : result) {
+            if(solution.getEvaluations() != null && solution.getEvaluations().size() >= config.getNumberOfRequiredEvaluations()) {
+                // we can cancel running through this list. Due to the sorting, the rest of the list has equal or more evaluations.
+                break;
+            }
             if (!alreadyEvaluatedByMe(user, solution) && !solution.isBlocked()) {
                 solutionToSend = solution;
                 break;
@@ -150,7 +157,6 @@ public class SendDifferentSolutionToUserDelegate implements JavaDelegate {
 
         List<ChallengeEntity> challenges = new ArrayList<>();
         if (user.getSolutions() != null) {
-
             for (SolutionEntity solution : user.getSolutions()) {
                 challenges.add(solution.getChallenge());
             }
@@ -183,4 +189,7 @@ public class SendDifferentSolutionToUserDelegate implements JavaDelegate {
     public void setCmsService(ICmsService cmsService) {
         this.cmsService = cmsService;
     }
+
+    @Autowired
+    public void setChatbotProperties(ChatbotProperties props) { this.config = props; }
 }
