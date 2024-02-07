@@ -34,8 +34,7 @@ import java.util.Optional;
 
 @Slf4j
 @Component
-@Deprecated // Deprecated, use InteractionDelegateV2 instead. This class needs to remain until all process instances of the old process version are finished
-public class InteractionDelegate implements JavaDelegate {
+public class InteractionDelegateV2 implements JavaDelegate {
 
     private ICmsService cmsService;
 
@@ -87,32 +86,22 @@ public class InteractionDelegate implements JavaDelegate {
 
         InteractionElement currentInteraction = interactions.get(index);
 
-        // As long as we do not have any user answers and we are not at the end of the interaction, keep sending the messages
-        while ((currentInteraction.getUserAnswers() == null || currentInteraction.getUserAnswers().isEmpty()) && index < interactions.size() - 1) {
-            sendMessage(chatId, processInstanceId, currentInteraction);
-            currentInteraction = interactions.get(++index);
-        }
-
-        sendMessage(chatId, processInstanceId, currentInteraction);
-
-        // If we are at the end, and there are no expected answers, end the interaction process
-        if (currentInteraction.getUserAnswers() == null || currentInteraction.getUserAnswers().isEmpty()) {
-            throw new BpmnError(IMessageEvents.NO_INTERACTION_OR_RESPONSE);
-        } else {
-            execution.setVariable(IProcessVariables.INTERACTION_ELEMENT_INDEX, ++index);
-            execution.setVariable(IProcessVariables.END_OF_INTERACTION, index >= interactions.size());
-        }
-    }
-
-    private void sendMessage(String chatId, String processInstanceId, InteractionElement currentInteraction) throws TelegramApiException, InterruptedException, IOException {
-        int delay = currentInteraction.getDelay() != null ? currentInteraction.getDelay() : 3;
         messageSender.setAction(chatId, ("false".equals(currentInteraction.getImage()) || currentInteraction.getImage() == null) ? DecorationAction.TYPING : DecorationAction.UPLOAD_PHOTO);
-        if (delay > 300) { // Defaulting to 5 minutes for large delays of old process instances. New Process Instances will be handled with InteractionDelegateV2
-            Thread.sleep(300 * 1000);
-        } else {
+
+
+        int delay = currentInteraction.getDelay() != null ? currentInteraction.getDelay() : 3;
+        boolean longDelay = delay > 300; // Long delays are handled within the diagram, only sleep on short delays
+
+        if (!longDelay) {
             Thread.sleep(delay * 1000);
         }
         sendMessageToChat(chatId, processInstanceId, currentInteraction);
+
+        boolean requiresUserAnswers = currentInteraction.getUserAnswers() != null && !currentInteraction.getUserAnswers().isEmpty();
+
+        execution.setVariable(IProcessVariables.INTERACTION_REQUIRES_USER_RESPONSE, requiresUserAnswers);
+        execution.setVariable(IProcessVariables.INTERACTION_ELEMENT_INDEX, ++index);
+        execution.setVariable(IProcessVariables.END_OF_INTERACTION, index >= interactions.size());
     }
 
     private void sendMessageToChat(String chatId, String processInstanceId, InteractionElement interactionElement) throws IOException, TelegramApiException {

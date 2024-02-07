@@ -92,6 +92,11 @@ public interface IProcessVariables {
      */
     String INTERACTION_ELEMENT_INDEX = "interactionElementIndex";
 
+    String INTERACTION_REQUIRES_LONG_DELAY = "requiresLongDelay";
+    String INTERACTION_CURRENT_DELAY = "currentInteractionDelay";
+
+    String INTERACTION_REQUIRES_USER_RESPONSE = "requiresUserResponse";
+
     /**
      * Name of a set of user ids that have already been asked for a solution.
      **/
